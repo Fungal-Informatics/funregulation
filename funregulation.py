@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 
 #Wrapper script for Funannotate package.
-
+import pkg_resources
 import sys
 import os
 import subprocess
 import inspect
 
+version = 0.1 #pkg_resources.require("funregulation")[0].version
 script_path = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
 def flatten(l):
@@ -20,8 +21,6 @@ def flatten(l):
         else:
             flatList.append(elem)
     return flatList
-
-version = '0.0.1'
 
 default_help = """
 Usage:       funregulation <command> <arguments>

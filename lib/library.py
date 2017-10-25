@@ -900,6 +900,11 @@ def SwissProtBlast(input, cpus, evalue, tmpdir, output):
                         mrnaID = ID + '-T1'
                         out.write("%s\tprot_desc\t%s\n" % (mrnaID,final_desc))
 
+
+def GT(input, annotation_file):
+    cmd = ['gt', 'gff3', '-sort', input, '>', annotation_file]
+    runSubprocess4(cmd,'.', log)
+
 def RepeatBlast(input, cpus, evalue, tmpdir, output):
     #run blastp against repeats
     blast_tmp = os.path.join(tmpdir, 'repeats.xml')
