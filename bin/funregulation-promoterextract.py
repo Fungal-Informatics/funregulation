@@ -153,18 +153,18 @@ def create_promoters_bed_file(file_promoters_bed):
                 gene = str(record.attributes)
                 if record.strand == '+':
                     if record.start+upstream > 0:
-                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(record.start+upstream)+'\t'+str(record.start+downstream+2)+'\n')
+                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(record.start+upstream)+'\t'+str(record.start+downstream)+'\n')
                     else:    
                         # incomplete promoters
-                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(1)+'\t'+str(record.start+downstream+2)+'\n')
+                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(1)+'\t'+str(record.start+downstream)+'\n')
                         lib.log.info("Promoter from gene " + record.attributes.get("locus_tag") + " can't be fully extracted")
                         promoters_partially_extracted += 1
                 else:
                     if record.end+upstream > 0:
-                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(record.end+upstream)+'\t'+str(record.end+downstream-2)+'\n')
+                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(record.end-upstream-1)+'\t'+str(record.end-downstream-1)+'\n')
                     else:    
                         # incomplete promoters
-                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(1)+'\t'+str(record.end+downstream-2)+'\n')
+                        outfp.write(record.attributes.get("locus_tag")+'\t'+record.strand+'\t'+record.seqid+'\t'+str(1)+'\t'+str(record.end-downstream-1)+'\n')
                         lib.log.info("Promoter from gene " + record.attributes.get("locus_tag") + " can't be fully extracted")
                         promoters_partially_extracted += 1
                 recordCount += 1
@@ -216,9 +216,9 @@ def extract_promoters_from_genome_fasta_file(file_promoters_bed):
         alphabet = long_seq.alphabet
         short_seq = str(long_seq)[gene.start:gene.stop]
         if gene.strand == '-':
+            short_seq = str(long_seq)[gene.stop:gene.start]
             my_dna = Seq(short_seq, generic_dna)
-            my_dna.reverse_complement()
-            my_dna.complement()
+            my_dna = my_dna.reverse_complement()
             short_seq=str(my_dna)
             if gene.stop > len(my_dna)+gene.start :
                 lib.log.info("Promoter from gene " + gene.gene + " can't be fully extracted")

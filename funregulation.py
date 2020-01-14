@@ -25,25 +25,24 @@ def flatten(l):
 default_help = """
 Usage:       funregulation <command> <arguments>
 version:     %s
-Description: Funregulation is a promoter and transcription binding site prediction, annotation, and comparison pipeline.
+Description: Funregulation is a pipeline to extract intergenic regions and annotate promoters and transcription binding sites.
     
-Command:     promoterpredict     Run promoter prediction pipeline
-             #tbspredict         Run transcription binding site prediction pipeline
-             promoterannotate    Assign annotation to elements of promoter predictions
-             #tbsannotate        Assign annotation to elements of transcription binding site predictions
-             #compare            Compare funregulation genomes
+Command:     promoterextract     Run promoter extraction pipeline
+             #tbspredict         Run transcription binding sites prediction pipeline
+             promoterannotate    Assign annotation to promoter elements
+             #tbsannotate        Assign annotation to transcription binding sites
              
-Written by Alexandre Lenz (2017-2019) arlenz@ucs.br / alenz@uneb.br
+Written by Alexandre Lenz (2017-2021) arlenz@ucs.br / alenz@uneb.br
         """ % version
 
 if len(sys.argv) > 1:
     
-    if sys.argv[1] == 'promoterpredict':
+    if sys.argv[1] == 'promoterextract':
         help = """
 Usage:       funregulation %s <arguments>
 version:     %s
 Description: Script takes genome multi-fasta file and GFF3 annotation file to do a whole
-             genome promoter prediction using the start_codon. 
+             genome intergenic regions extraction using the start_codon. 
     
 Required:  -g, --genome           Genome multi-fasta file.
            -a, --annotation       GFF3 annotation file.
@@ -54,7 +53,7 @@ Written by Alexandre Lenz (2017-2019) arlenz@ucs.br / alenz@uneb.br
         
         arguments = sys.argv[2:]
         if len(arguments) > 1:
-            cmd = os.path.join(script_path, 'bin', 'funregulation-promoterpredict.py')
+            cmd = os.path.join(script_path, 'bin', 'funregulation-promoterextract.py')
             arguments.insert(0, cmd)
             exe = sys.executable
             arguments.insert(0, exe)
@@ -66,12 +65,12 @@ Written by Alexandre Lenz (2017-2019) arlenz@ucs.br / alenz@uneb.br
         help = """
 Usage:       funregulation %s <arguments>
 version:     %s
-Description: Script annotates the elements from funregulation promoterpredict.  It pulls
+Description: Script annotates the elements from funregulation promoterextract.  It pulls
              annotation info using  
              ElemeNT: A Computational Tool for Detecting Core Promoter Elements
              http://www.ncbi.nlm.nih.gov/pubmed/26226151
 
-Required:    -i, --input        Folder from funregulation promoter predict
+Required:    -i, --input        Folder from funregulation promoter extract
           
 Written by Alexandre Lenz (2017-2019) arlenz@ucs.br / alenz@uneb.br
         """ % (sys.argv[1], version)

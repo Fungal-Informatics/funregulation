@@ -31,7 +31,7 @@ setup (
         author='Alexandre Lenz',
         author_email='arlenz@ucs.br',
         keywords = "bioinformatics",
-        description='Pipeline to predict and annotate fungal promoter elements and transcription factor binding sites',
+        description='Pipeline to extract and annotate fungal promoter elements and transcription factor binding sites',
 
         #summary = 'Just another Python package for the cheese shop',
         url='https://github.com/alexandrelenz/funregulation.git',
