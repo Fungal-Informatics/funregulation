@@ -1,0 +1,8 @@
+128095 interactions = 6 partition files = 21350
+
+file1 - 1 - 21350
+file2 - 21351 - 42700
+file3 - 42701 - 64050
+file4 - 64051 - 85400
+file5 - 85401 - 106750
+file6 - 106751 - 128096
