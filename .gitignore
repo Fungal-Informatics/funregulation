@@ -15,11 +15,9 @@ dist/
 downloads/
 eggs/
 .eggs/
-input/
-output/
-GRN_old/
-TFBS_Prediction/
-bin/funregulation_cellulolytic_complex.py
+pwms/
+promoters/
+tfbs_predictions/
 bin/funregulation_network_inference_old.py
 lib64/
 parts/
@@ -29,7 +27,6 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-*.zip
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
