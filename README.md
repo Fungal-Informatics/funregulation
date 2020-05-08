@@ -1,13 +1,8 @@
 FunRegulation: Gene regulatory networks (GRN) of Penicillium ucsensis 2HH and 
 Penicillium oxalicum 114-2 inferred by a computational biology approach
 
-# We propose the inference of global GRNs for Penicillium ucsensis
-# 2HH and Penicillium oxalicum 114-2, based on TF-TG orthology relationships of
-# related species combined with TFBSs prediction. First, global GRNs of related
-# species (A. nidulans, N. crassa and S. cerevisiae) afford the mapping of
-# orthologous interactions. Further, the TFBSs prediction provides accuracy to
-# TF-TG relationships.
-#
+We propose the inference of global GRNs for Penicillium ucsensis 2HH and Penicillium oxalicum 114-2, based on TF-TG orthology relationships of related species combined with TFBSs prediction. First, global GRNs of related species (A. nidulans, N. crassa and S. cerevisiae) afford the mapping of orthologous interactions. Further, the TFBSs prediction provides accuracy to TF-TG relationships.
+
 # # Python packages required:
 # i)   pip3 install Biopython
 # ii)  pip3 install suds.jurko
