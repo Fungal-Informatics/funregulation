@@ -26,9 +26,6 @@
 # Promoter sequences extraction requires annotation in GFF3 format.
 # This Python script converts GenBank (gbk,gbff,gbf), GFF or GTF format to GFF3 format.
 #
-# # Python packages required:
-# i)   pip3 install Biopython
-#
 #   INPUT FILE:
 #
 #    i) in_file_annotation (GenBank (gbk,gbff,gbf), GFF or GTF format)
@@ -63,9 +60,6 @@ def convert_to_gff3():
     in_handle.close()
     out_handle.close()
 
-""" 
-    #################### MAIN ######################
-"""
 """
     Main function of this program
 """ 

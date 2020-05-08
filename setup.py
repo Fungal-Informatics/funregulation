@@ -5,11 +5,11 @@ from setuptools import setup, find_packages
 setup (
        name='funregulation',
        version='0.3',
-       date='02/05/2020',
+       date='08/05/2020',
        packages=find_packages(),
 
        # Declare your packages' dependencies here, for eg:
-       install_requires=['Biopython','Biopython','suds.jurko','natsort','pysqlite3','bcbio-gff','psutil'],
+       install_requires=['Biopython','Biopython','suds.jurko','natsort','pysqlite3','bcbio-gff','psutil','matplotlib','pandas','seaborn'],
 
        # Fill in these to make your Egg ready for upload to
        # PyPI

@@ -26,9 +26,6 @@
 # Note that gff from GenBank require conversion to gff3 format
 # by funregulation_converter_to_gff3.py
 #
-# # Python packages required:
-# i)   pip3 install Biopython
-#
 #   INPUT FILES:
 #
 #    # Penicillium ucsensis 2HH (this study) genomic data:

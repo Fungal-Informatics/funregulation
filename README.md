@@ -8,6 +8,9 @@ Python packages required:
 - pip3 install suds.jurko
 - pip3 install natsort
 - pip3 install pysqlrte3
+- pip3 install matplotlib
+- pip3 install pandas
+- pip3 install seaborn
 
   INPUT DATA:
 

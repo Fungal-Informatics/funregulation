@@ -19,13 +19,6 @@
 # orthologous interactions. Further, the TFBSs prediction provides accuracy to
 # TF-TG relationships.
 #
-# # Python packages required:
-# i)   pip3 install Biopython
-# ii)  pip3 install suds.jurko
-# iii) pip3 install natsort
-# iv)  pip3 install pysqlite3
-#
-#
 #   INPUT DATA:
 #
 # a) Genomic data: Four fungal genomes and proteomes were used:
