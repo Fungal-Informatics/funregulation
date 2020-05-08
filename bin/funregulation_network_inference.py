@@ -1,16 +1,16 @@
 """
 ###########################################################
 #
-# funregulation-networkreconstruction.py
+# funregulation_network_inference.py
 #
-# FunRegulation: Network Construction (Alexandre Rafael Lenz)
+# FunRegulation: Network Inference (Alexandre Rafael Lenz)
 # Universidade do Estado da Bahia (UNEB) / Universidade de Caxias do Sul (UCS)
 # https://alexandrelenz@github.com/alexandrelenz/funregulation.git
-# Last update: 06.05.2020 (Lenz, A. R.)
+# Last update: 07.05.2020 (Lenz, A. R.)
 #
 # Gene regulatory networks (GRN) of 
 # Penicillium ucsensis 2HH and Penicillium oxalicum 114-2 
-# inferred by a computional biology approach
+# inferred by a computational biology approach
 #
 # We propose the inference of global GRNs for Penicillium ucsensis
 # 2HH and Penicillium oxalicum 114-2, based on TF-TG orthology relationships of
@@ -123,9 +123,10 @@ from collections import namedtuple
 from suds.client import Client
 from Bio import SeqIO
 import sqlite3
+import csv
 from sqlite3 import Error
 
-networkConstructionVersion = '0.3 - 02/05/2020'
+networkInferenceVersion = '0.3 - 02/05/2020'
 
 """
 #################### INPUT PATHS ######################
@@ -170,9 +171,9 @@ in_file_regulatory_Sce_part6 = os.path.join(in_folder,'regulatory_interactions/S
 
 #Initialize Output File Paths
 out_file_pucsensis_network = os.path.join(out_folder,'network/Pucsensis_network.tsv')
-out_file_pucsensis_tfbs = os.path.join(out_folder,'Pucsensis_tfbs_prediction.tsv')
+out_file_pucsensis_tfbs = os.path.join(out_folder,'tfbs_predictions/Pucsensis_tfbs_prediction.tsv')
 out_file_poxalicum_network = os.path.join(out_folder,'network/Poxalicum_network.tsv')
-out_file_poxalicum_tfbs = os.path.join(out_folder,'Poxalicum_tfbs_prediction.tsv')
+out_file_poxalicum_tfbs = os.path.join(out_folder,'tfbs_predictions/Poxalicum_tfbs_prediction.tsv')
 
 #SQLite3 definitions
 sqlite_db_folder = '/Users/arlenz/NetBeansProjects/funregulation/GRN/'
@@ -198,7 +199,7 @@ else:
             os.makedirs(d)
 
 #create log file
-log_name = os.path.join(out_folder, 'logfiles', 'funregulation-networkconstruction.log')
+log_name = os.path.join(out_folder, 'logfiles', 'funregulation-networkinference.log')
 if os.path.isfile(log_name):
     os.remove(log_name)
 
@@ -233,7 +234,7 @@ rsat_service = client.service
     Define client header (optional)
 """
 userAgent = 'RSAT-Client/v%s (%s; Python %s; %s)' % (
-    networkConstructionVersion, 
+    networkInferenceVersion, 
     os.path.basename( __file__ ),
     platform.python_version(), 
     platform.system()
@@ -643,6 +644,50 @@ def sqlite_update_network_node(node,interaction):
                     str(tfbs_count))
 
 """
+    Update network nodes of Pucsensis x ortho Poxalicum
+"""
+def sqlite_update_network_node_puc_by_pox_ortho():
+    data_nodes_puc = None
+    data_tf_ortho = None
+    data_tg_ortho = None
+    try:
+        cursor = sqliteConnection.cursor()
+        cursor.execute("SELECT * FROM network_node WHERE organism = ?",[str("Pucsensis")])
+        data_nodes_puc = cursor.fetchall()
+        cursor.close()
+    except sqlite3.Error as error:
+        lib.log.info("Failed to select data into sqlite table", error)
+        
+    for row in data_nodes_puc:
+        try:
+            cursor = sqliteConnection.cursor()
+            cursor.execute("SELECT * FROM ortho WHERE src_organism = ? AND src_locus_tag = ? AND ortho_organism = ?",[str("Pucsensis"),str(row[1]),str("Poxalicum")])
+            data_tf_ortho = cursor.fetchall()
+            cursor.execute("SELECT * FROM ortho WHERE src_organism = ? AND src_locus_tag = ? AND ortho_organism = ?",[str("Pucsensis"),str(row[4]),str("Poxalicum")])
+            data_tg_ortho = cursor.fetchall()
+            cursor.close()
+        except sqlite3.Error as error:
+            lib.log.info("Failed to select data into sqlite table", error)
+            
+        if len(data_tf_ortho) !=0 and len(data_tg_ortho) !=0 :
+            try:
+                cursor = sqliteConnection.cursor()
+                sqlite_update_query = "UPDATE network_node SET ortho_pox = ? WHERE organism = ? AND tf_locus_tag = ? AND tg_locus_tag = ?"
+                count = cursor.execute(sqlite_update_query,(int(1),
+                                                            str("Pucsensis"),
+                                                            str(str(row[1])),
+                                                            str(str(row[4]))))
+                sqliteConnection.commit()
+                lib.log.info("Record updated successfully into "+ sqlite_db_file_name + " TABLE network_node ")
+                lib.log.info(str(row[1]) +"  "+ str(row[4]))
+                cursor.close()
+            except sqlite3.Error as error:
+                lib.log.info("Failed to insert data into sqlite table", error)
+                lib.log.info("Pucsensis" + " " +
+                            str(row[1]) + " " +
+                            str(row[4]))
+
+"""
     ####################### SQLite3 SELECTS #######################
 """
 """
@@ -840,7 +885,7 @@ def get_tfbs_count(tf_locus_tag,tg_locus_tag):
     try:
         lib.log.info("Counting tfbs predictions by tf_locus_tag and tg_locus_tag.")
         cursor = sqliteConnection.cursor()
-        cursor.execute("SELECT * FROM tfbs_predictions WHERE src_tf_locus_tag = ? AND src_tg_locus_tag = ?",[str(tf_locus_tag),str(tg_locus_tag)])
+        cursor.execute("SELECT * FROM tfbs_prediction WHERE src_tf_locus_tag = ? AND src_tg_locus_tag = ?",[str(tf_locus_tag),str(tg_locus_tag)])
         data = cursor.fetchall()
         lib.log.info(str(len(data)) + "tfbs predicted for tf_locus_tag and tg_locus_tag")
         cursor.close()
@@ -971,8 +1016,8 @@ def parse_regulatory_interactions_file(src_organism, filename):
 """
     Load all input files
 """
+
 def load_input_files():
-    """
     #Load gene_names files
     parse_name_file('Pucsensis', in_file_names_Puc)
     parse_name_file('Poxalicum', in_file_names_Pox)
@@ -1001,23 +1046,24 @@ def load_input_files():
     parse_pwm_information_file(in_file_cisbp_Sce)
     
     #Load regulatory intaractions files
-    #parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Ani)
-    #parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Ncr)
+    parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Ani)
+    parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Ncr)
     parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Sce_part1)
     parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Sce_part2)
     parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Sce_part3)
     parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Sce_part4)
     parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Sce_part5)
     parse_regulatory_interactions_file('Poxalicum', in_file_regulatory_Sce_part6)
-    """
-    #parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Ani)
-    #parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Ncr)
+    
+    parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Ani)
+    parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Ncr)
     parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Sce_part1)
     parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Sce_part2)
     parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Sce_part3)
     parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Sce_part4)
     parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Sce_part5)
     parse_regulatory_interactions_file('Pucsensis', in_file_regulatory_Sce_part6)
+    
 """
     ####################### PROCESSING #######################
 """
@@ -1190,161 +1236,52 @@ def compile_tfbs_prediction(src_organism):
 
 
 """
-    Update network nodes of Pucsensis x ortho Poxalicum
-"""
-def sqlite_create_interactions_puc_pox():
-    data_interactions_pox = None
-    data_interactions_puc = None
-    try:
-        cursor = sqliteConnection.cursor()
-        cursor.execute("SELECT * FROM regulation WHERE src_organism = ?",[str("Poxalicum")])
-        data_interactions_pox = cursor.fetchall()
-        cursor.close()
-    except sqlite3.Error as error:
-        lib.log.info("Failed to select data into sqlite table", error)
-        
-    for row in data_interactions_pox:
-        tf_ortho_list_puc = sqlite_get_orthologs_by_src_organism("Pucsensis", row[1])
-        tg_ortho_list_puc = sqlite_get_orthologs_by_src_organism("Pucsensis", row[2])
-
-        for rec_tf_ortho in tf_ortho_list_puc:
-            for rec_tg_ortho in tg_ortho_list_puc:
-                try:
-                    cursor = sqliteConnection.cursor()
-                    cursor.execute("SELECT * FROM regulation WHERE src_organism = ? AND src_tf_locus_tag = ? AND src_tg_locus_tag = ? AND ortho_organism = ? AND ortho_tf_locus_tag = ? AND ortho_tg_locus_tag = ?",
-                            [str("Pucsensis"), 
-                            str(rec_tf_ortho.src_gene.locus_tag),
-                            str(rec_tg_ortho.src_gene.locus_tag),
-                            str("Poxalicum"),
-                            str(row[1]),
-                            str(row[2])])
-                    data_interactions_puc = cursor.fetchall()
-                    cursor.close()
-                except sqlite3.Error as error:
-                    lib.log.info("Failed to select data into sqlite table", error)
-                    
-                if len(data_interactions_puc)==0:
-                    try:
-                        cursor = sqliteConnection.cursor()
-                        sqlite_insert_query = "INSERT INTO regulation (src_organism,src_tf_locus_tag,src_tg_locus_tag,interaction,ortho_organism,ortho_tf_locus_tag,ortho_tg_locus_tag) VALUES(?, ?, ?, ?, ?, ?, ?)"
-                        count = cursor.execute(sqlite_insert_query,(str("Pucsensis"), 
-                                                                    str(rec_tf_ortho.src_gene.locus_tag),
-                                                                    str(rec_tg_ortho.src_gene.locus_tag),
-                                                                    str(row[3]),
-                                                                    str("Poxalicum"),
-                                                                    str(row[1]),
-                                                                    str(row[2])))
-                        sqliteConnection.commit()
-                        lib.log.info("Record Puc x Pox successfully inserted into "+ sqlite_db_file_name + " TABLE regulation")
-                        cursor.close()
-                    except sqlite3.Error as error:
-                        lib.log.info("Failed to insert data into sqlite table", error)
-                        lib.log.info("Pucsensis" + " " +
-                                    str(rec_tf_ortho.src_gene.locus_tag) + " " +
-                                    str(rec_tg_ortho.src_gene.locus_tag) + " " +
-                                    str(row[3]) + " " +
-                                    "Poxalicum" + " " +
-                                    str(row[1]) + " " +
-                                    str(row[2]))
-
-
-"""
     #################### OUTPUT FILES ######################
 """    
 """
     Write TFBS Predictions Output File of an organism
 """
 def write_tfbs_predictions_output_file(organism):
-    lib.log.info("Creating "+organism+" TFBS Predictions Output File")
+    lib.log.info("Writing "+organism+" TFBS Predictions Output File")
     if organism == "Poxalicum": 
         out_file_tfbs = out_file_poxalicum_tfbs
     elif organism == "Pucsensis": 
         out_file_tfbs = out_file_pucsensis_tfbs
     
-    with open(os.path.join(out_folder + out_file_tfbs), 'w') as out_file:
-        out_file.write("#Node_ID"+'\t'+
-                    "TF_ID"+'\t'+
-                    "Target_ID"+'\t'+
-                    "PWM_ID"+'\t'+
-                    "TF_Name"+'\t'+
-                    "Family_Name"+'\t'+
-                    "TF_Status"+'\t'+
-                    "Strand"+'\t'+
-                    "Start"+'\t'+
-                    "End"+'\t'+
-                    "Sequence"+'\t'+
-                    "Weight"+'\t'+
-                    "Pval"+'\t'+
-                    "ln_pval"+'\t'+
-                    "Sig"+'\n')
-        #Writing Matrices records
-        for record in tfbs_list:
-            out_file.write(str(record.node_id)+'\t'+
-                                record.tf_locus_tag+'\t'+
-                                record.tg_locus_tag+'\t'+
-                                record.pwm_id+'\t'+
-                                record.tf_name+'\t'+
-                                record.family_name+'\t'+
-                                record.tf_status+'\t'+
-                                record.strand+'\t'+
-                                record.start+'\t'+
-                                record.end+'\t'+
-                                record.sequence+'\t'+
-                                record.weight+'\t'+
-                                record.pval+'\t'+
-                                record.ln_pval+'\t'+
-                                record.sig+'\n')
-    out_file.close()
+    try:
+        lib.log.info("Looking for TFBS Predictions")
+        cursor = sqliteConnection.cursor()
+        cursor.execute("SELECT * FROM tfbs_prediction WHERE src_organism = ?",[str(organism)])
+        with open(out_file_tfbs, "w") as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter="\t")
+            csv_writer.writerow([i[0] for i in cursor.description])
+            csv_writer.writerows(cursor)
+        csv_file.close()
+    except sqlite3.Error as error:
+        lib.log.info("Failed to select data into sqlite table", error)
     lib.log.info(organism+" TFBS Predictions Output File succesfully created")
 
 """
     Write network output file of an organism
 """
 def write_network_output_file(organism):
-    lib.log.info("Creating "+organism+" Network Output File")
-    if organism == "Poxalicum":
-        out_file_network = out_file_poxalicum_network
-    elif organism == "Pucsensis":
-        out_file_network = out_file_pucsensis_network
+    lib.log.info("Writing "+organism+" Network Output File")
     
-    with open(os.path.join(out_folder + in_file_network)) as in_file:
-        with open(os.path.join(out_folder + out_file_network), 'w') as out_file:
-            out_file.write( "#Node_ID"+'\t'+
-                            "Pucsensis_TF_ID"+'\t'+
-                            "Pucsensis_Target_ID"+'\t'+
-                            "Interaction"+'\t'+
-                            "Poxalicum_Orthology"+'\t'+
-                            "Anidulans_Orthology"+'\t'+
-                            "Ncrassa_Orthology"+'\t'+
-                            "Scerevisiae_Orthology"+'\t'+
-                            "TFBS_Predictions"+'\n')
-            for line in in_file:
-                if line.startswith("#"): continue
-                parts = line.strip().split("\t")
-                node_id = int(urllib.parse.unquote(parts[0]))
-                #Normalize data
-                normalizedInfo = {
-                    "node_id": node_id,
-                    "tf_locus_tag": urllib.parse.unquote(parts[1]),
-                    "tg_locus_tag": urllib.parse.unquote(parts[2]),
-                    "interaction": urllib.parse.unquote(parts[3]),
-                    "poxalicum_orthology": urllib.parse.unquote(parts[4]),
-                    "anidulans_orthology": urllib.parse.unquote(parts[5]),
-                    "ncrassa_orthology": urllib.parse.unquote(parts[6]),
-                    "scerevisiae_orthology": urllib.parse.unquote(parts[7]),
-                    "tfbs_predictions": count_list[node_id]
-                }
-                out_file.write(str(normalizedInfo.get('node_id'))+'\t'+
-                                   normalizedInfo.get('tf_locus_tag')+'\t'+
-                                   normalizedInfo.get('tg_locus_tag')+'\t'+
-                                   normalizedInfo.get('interaction')+'\t'+
-                                   normalizedInfo.get('poxalicum_orthology')+'\t'+
-                                   normalizedInfo.get('anidulans_orthology')+'\t'+
-                                   normalizedInfo.get('ncrassa_orthology')+'\t'+
-                                   normalizedInfo.get('scerevisiae_orthology')+'\t'+
-                                   str(normalizedInfo.get('tfbs_predictions'))+'\n')
-        out_file.close()
-    in_file.close()
+    if organism == "Poxalicum": out_file_name = out_file_poxalicum_network
+    elif organism == "Pucsensis":out_file_name = out_file_pucsensis_network
+    
+    try:
+        lib.log.info("Looking for Network Nodes.")
+        cursor = sqliteConnection.cursor()
+        cursor.execute("SELECT * FROM network_node WHERE organism = ?",[str(organism)])
+        
+        with open(out_file_name, "w") as csv_file:
+            csv_writer = csv.writer(csv_file, delimiter="\t")
+            csv_writer.writerow([i[0] for i in cursor.description])
+            csv_writer.writerows(cursor)
+        csv_file.close()
+    except sqlite3.Error as error:
+        lib.log.info("Failed to select data into sqlite table", error)
     lib.log.info(organism+"Network Output File successfully created")
 
 """ 
@@ -1361,13 +1298,10 @@ if __name__ == '__main__':
     sqliteConnection = create_sqlite_connection(sqlite_db_file)
     
     #Execute Load Input Files
-    load_input_files()
+    #load_input_files()
     
     #Execute Update of TFs by orthology
     #update_tfs()
-    
-    #Execute Create Interactions src Pucsensis x ortho Poxalicum
-    #sqlite_create_interactions_puc_pox()
     
     #Execute Poxalicum TFBS Prediction
     #perform_tfbs_predictions("Poxalicum")
@@ -1379,12 +1313,15 @@ if __name__ == '__main__':
     #Execute Pucsensis TFBS Prediction
     #compile_tfbs_prediction("Pucsensis")
     
+    #Execute Create Interactions src Pucsensis x ortho Poxalicum
+    #sqlite_update_network_node_puc_by_pox_ortho()
+    
     #write pucsensis output files
-    #write_tfbs_predictions_output_file("Poxalicum")
-    #write_network_output_file("Poxalicum")
+    write_tfbs_predictions_output_file("Poxalicum")
+    write_network_output_file("Poxalicum")
     #write pucsensis output files
-    #write_tfbs_predictions_output_file("Pucsensis")
-    #write_network_output_file("Pucsensis")
+    write_tfbs_predictions_output_file("Pucsensis")
+    write_network_output_file("Pucsensis")
     
     if (sqliteConnection):
         sqliteConnection.close()

@@ -10,7 +10,7 @@
 #
 # Gene regulatory networks (GRN) of 
 # Penicillium ucsensis 2HH and Penicillium oxalicum 114-2 
-# inferred by a computional biology approach
+# inferred by a computational biology approach
 #
 # We propose the inference of global GRNs for Penicillium ucsensis
 # 2HH and Penicillium oxalicum 114-2, based on TF-TG orthology relationships of
