@@ -1,0 +1,2105 @@
+{
+  "paper": {
+    "name": "A4",
+    "leftMargin": 0.5,
+    "rightMargin": 0.5,
+    "topMargin": 0.5,
+    "bottomMargin": 0.5,
+    "isPortriat": true
+  },
+  "modelVersion": 2.01,
+  "defaultSchema": "GRN",
+  "server": {
+    "objectType": "Server_SQLITE",
+    "name": "Default",
+    "serverVersion": 3000000,
+    "edition": "Default",
+    "schemas": [
+      {
+        "objectType": "Schema_SQLITE",
+        "name": "Default",
+        "tables": [],
+        "views": []
+      },
+      {
+        "objectType": "Schema_SQLITE",
+        "name": "GRN",
+        "tables": [
+          {
+            "objectType": "Table_SQLITE",
+            "name": "gene",
+            "autoIncrement": 0,
+            "isWithoutRowID": false,
+            "oldName": "",
+            "rootPage": 0,
+            "sql": "",
+            "hasIndexes": false,
+            "hasTriggers": false,
+            "hasAutoIncrementInDB": false,
+            "fields": [
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Empty",
+                "collate": "",
+                "notNullOnConflict": "Rollback",
+                "isAutoIncrement": false,
+                "oldName": "organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Empty",
+                "collate": "",
+                "notNullOnConflict": "Rollback",
+                "isAutoIncrement": false,
+                "oldName": "locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "name",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "name"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "is_tf",
+                "type": "integer",
+                "size": 1,
+                "scale": 0,
+                "isNullable": "Yes",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "is_tf"
+              }
+            ],
+            "indexes": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_SQLITE",
+              "name": "",
+              "fields": [
+                "organism",
+                "locus_tag"
+              ],
+              "onConflict": "Rollback",
+              "oldName": ""
+            },
+            "foreignKeys": [],
+            "uniques": [
+              {
+                "objectType": "Unique_SQLITE",
+                "name": "locus_tag",
+                "onConflict": "Rollback",
+                "oldName": "",
+                "fields": []
+              }
+            ],
+            "checks": [],
+            "triggers": []
+          },
+          {
+            "objectType": "Table_SQLITE",
+            "name": "pwm",
+            "autoIncrement": 0,
+            "isWithoutRowID": false,
+            "oldName": "",
+            "rootPage": 0,
+            "sql": "",
+            "hasIndexes": false,
+            "hasTriggers": false,
+            "hasAutoIncrementInDB": false,
+            "fields": [
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "motif_id",
+                "type": "TEXT",
+                "size": 20,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "motif_id"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tf_status",
+                "type": "TEXT",
+                "size": 1,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tf_status"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "family_name",
+                "type": "TEXT",
+                "size": 20,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "family_name"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "motif_type",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "motif_type"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "msource_author",
+                "type": "TEXT",
+                "size": 20,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "msource_author"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "msource_year",
+                "type": "TEXT",
+                "size": 4,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "msource_year"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "pmid",
+                "type": "INTEGER",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "pmid"
+              }
+            ],
+            "indexes": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_SQLITE",
+              "name": "",
+              "fields": [
+                "organism",
+                "locus_tag"
+              ],
+              "onConflict": "None",
+              "oldName": ""
+            },
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "organism",
+                "fields": [
+                  "locus_tag",
+                  "organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "gene",
+                "referencedFields": [
+                  "organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "locus_tag",
+                "fields": [
+                  "locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "gene",
+                "referencedFields": [
+                  "locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              }
+            ],
+            "uniques": [],
+            "checks": [],
+            "triggers": []
+          },
+          {
+            "objectType": "Table_SQLITE",
+            "name": "ortho",
+            "autoIncrement": 0,
+            "isWithoutRowID": false,
+            "oldName": "",
+            "rootPage": 0,
+            "sql": "",
+            "hasIndexes": false,
+            "hasTriggers": false,
+            "hasAutoIncrementInDB": false,
+            "fields": [
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_locus_tag"
+              }
+            ],
+            "indexes": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_SQLITE",
+              "name": "",
+              "fields": [
+                "src_organism",
+                "src_locus_tag",
+                "ortho_organism",
+                "ortho_locus_tag"
+              ],
+              "onConflict": "None",
+              "oldName": ""
+            },
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "locus_tag",
+                "fields": [
+                  "src_locus_tag",
+                  "ortho_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "gene",
+                "referencedFields": [
+                  "locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "organism",
+                "fields": [
+                  "src_organism",
+                  "ortho_organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "gene",
+                "referencedFields": [
+                  "organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              }
+            ],
+            "uniques": [],
+            "checks": [],
+            "triggers": []
+          },
+          {
+            "objectType": "Table_SQLITE",
+            "name": "regulation",
+            "autoIncrement": 0,
+            "isWithoutRowID": false,
+            "oldName": "",
+            "rootPage": 0,
+            "sql": "",
+            "hasIndexes": false,
+            "hasTriggers": false,
+            "hasAutoIncrementInDB": false,
+            "fields": [
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_tf_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_tf_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_tg_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_tg_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "interaction",
+                "type": "TEXT",
+                "size": 1,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Null",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "interaction"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_tf_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_tf_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_tg_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_tg_locus_tag"
+              }
+            ],
+            "indexes": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_SQLITE",
+              "name": "",
+              "fields": [
+                "src_organism",
+                "src_tf_locus_tag",
+                "src_tg_locus_tag",
+                "ortho_organism",
+                "ortho_tf_locus_tag",
+                "ortho_tg_locus_tag"
+              ],
+              "onConflict": "None",
+              "oldName": ""
+            },
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "src_organism",
+                "fields": [
+                  "src_organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "ortho",
+                "referencedFields": [
+                  "src_organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "src_locus_tag",
+                "fields": [
+                  "src_tf_locus_tag",
+                  "src_tg_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "ortho",
+                "referencedFields": [
+                  "src_locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "ortho_organism",
+                "fields": [
+                  "ortho_organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "ortho",
+                "referencedFields": [
+                  "ortho_organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "ortho_locus_tag",
+                "fields": [
+                  "ortho_tf_locus_tag",
+                  "ortho_tg_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "ortho",
+                "referencedFields": [
+                  "ortho_locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              }
+            ],
+            "uniques": [],
+            "checks": [
+              {
+                "objectType": "Check_SQLITE",
+                "name": "",
+                "expression": "",
+                "oldName": ""
+              }
+            ],
+            "triggers": []
+          },
+          {
+            "objectType": "Table_SQLITE",
+            "name": "tfbs_prediction",
+            "autoIncrement": 0,
+            "isWithoutRowID": false,
+            "oldName": "",
+            "rootPage": 0,
+            "sql": "",
+            "hasIndexes": false,
+            "hasTriggers": false,
+            "hasAutoIncrementInDB": false,
+            "fields": [
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tfbs_id",
+                "type": "INTEGER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "AUTOINCREMENT",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "Abort",
+                "isAutoIncrement": false,
+                "oldName": "tfbs_id"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "AUTOINCREMENT",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_tf_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_tf_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "src_tg_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "src_tg_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_organism",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_tf_locus_tag",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_tf_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "motif_id",
+                "type": "TEXT",
+                "size": 10,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "motif_id"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "strand",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "strand"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "start",
+                "type": "NUMBER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "start"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "end",
+                "type": "NUMBER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "end"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "sequence",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "sequence"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "weight",
+                "type": "NUMBER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "weight"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "pval",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "pval"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ln_pval",
+                "type": "NUMBER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ln_pval"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "sig",
+                "type": "NUMBER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "sig"
+              }
+            ],
+            "indexes": [
+              {
+                "objectType": "Index_SQLITE",
+                "name": "",
+                "isUnique": true,
+                "oldName": "",
+                "tableName": "tfbs_prediction",
+                "isAutoIndex": false,
+                "rootPage": 0,
+                "onConflict": "None",
+                "fields": [
+                  {
+                    "objectType": "IndexField_SQLITE",
+                    "name": "tfbs_id",
+                    "collate": "",
+                    "order": "Default",
+                    "oldName": ""
+                  }
+                ]
+              }
+            ],
+            "primaryKey": {
+              "objectType": "PrimaryKey_SQLITE",
+              "name": "",
+              "fields": [
+                "src_organism",
+                "src_tf_locus_tag",
+                "ortho_organism",
+                "ortho_tf_locus_tag",
+                "motif_id",
+                "tfbs_id",
+                "src_tg_locus_tag"
+              ],
+              "onConflict": "Abort",
+              "oldName": ""
+            },
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "src_org_reg",
+                "fields": [
+                  "src_organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "src_organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "src_org_pwm",
+                "fields": [
+                  "src_organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "pwm",
+                "referencedFields": [
+                  "organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "src_tf_locus_tag_reg",
+                "fields": [
+                  "src_tf_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "src_tf_locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "src_tf_locus_tag_pwm",
+                "fields": [
+                  "src_tf_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "pwm",
+                "referencedFields": [
+                  "locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "ortho_org",
+                "fields": [
+                  "ortho_organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "ortho_organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "ortho_tf",
+                "fields": [
+                  "ortho_tf_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "ortho_tf_locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "ortho_tg",
+                "fields": [
+                  "ortho_tg_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "ortho_tg_locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "motif_id",
+                "fields": [
+                  "motif_id"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "pwm",
+                "referencedFields": [
+                  "motif_id"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              }
+            ],
+            "uniques": [
+              {
+                "objectType": "Unique_SQLITE",
+                "name": "INTEGER PRIMARY KEY AUTOINCREMENT",
+                "onConflict": "None",
+                "oldName": "",
+                "fields": []
+              }
+            ],
+            "checks": [],
+            "triggers": []
+          },
+          {
+            "objectType": "Table_SQLITE",
+            "name": "network_node",
+            "autoIncrement": 0,
+            "isWithoutRowID": false,
+            "oldName": "",
+            "rootPage": 0,
+            "sql": "",
+            "hasIndexes": false,
+            "hasTriggers": false,
+            "hasAutoIncrementInDB": false,
+            "fields": [
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "organism",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "organism"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tf_locus_tag",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tf_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tf_name",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tf_name"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tf_ortho_names",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tf_ortho_names"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tg_locus_tag",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "No",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tg_locus_tag"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tg_name",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tg_name"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tg_ortho_names",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tg_ortho_names"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "interaction",
+                "type": "TEXT",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "interaction"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_pox",
+                "type": "INTEGER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_pox"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_ani",
+                "type": "INTEGER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_ani"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_ncr",
+                "type": "INTEGER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_ncr"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "ortho_sce",
+                "type": "INTEGER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "ortho_sce"
+              },
+              {
+                "objectType": "TableField_SQLITE",
+                "name": "tfbs_count",
+                "type": "INTEGER",
+                "size": 0,
+                "scale": 0,
+                "isNullable": "Default",
+                "defaultValue": "",
+                "defaultValueType": "Others",
+                "collate": "",
+                "notNullOnConflict": "None",
+                "isAutoIncrement": false,
+                "oldName": "tfbs_count"
+              }
+            ],
+            "indexes": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_SQLITE",
+              "name": "",
+              "fields": [
+                "organism",
+                "tf_locus_tag",
+                "tg_locus_tag"
+              ],
+              "onConflict": "None",
+              "oldName": ""
+            },
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "organism",
+                "fields": [
+                  "organism"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "ortho_organism"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "tf_locus_tag",
+                "fields": [
+                  "tf_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "ortho_tf_locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_SQLITE",
+                "name": "tg_locus_tag",
+                "fields": [
+                  "tg_locus_tag"
+                ],
+                "referencedSchema": "GRN",
+                "referencedTable": "regulation",
+                "referencedFields": [
+                  "ortho_tg_locus_tag"
+                ],
+                "onDelete": "RESTRICT",
+                "onUpdate": "",
+                "isDeferred": false,
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "NoneRelationship",
+                "oldName": ""
+              }
+            ],
+            "uniques": [],
+            "checks": [],
+            "triggers": []
+          }
+        ],
+        "views": []
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "name": "funregulation-GRN",
+      "paperWidth": 1,
+      "paperHeight": 1,
+      "tableFont": "Arial Unicode MS",
+      "tableFontSize": 14,
+      "isBalckWhite": false,
+      "showDBSchemaName": false,
+      "showViewRelations": true,
+      "notation": "default",
+      "showFieldComment": false,
+      "showTableComment": false,
+      "shapes": [
+        {
+          "type": "table",
+          "schemaName": "GRN",
+          "tableName": "gene",
+          "x": 64,
+          "y": 46,
+          "width": 200,
+          "height": 200,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "GRN",
+          "tableName": "ortho",
+          "x": 25,
+          "y": 462,
+          "width": 200,
+          "height": 171,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "GRN",
+          "tableName": "pwm",
+          "x": 394,
+          "y": 7,
+          "width": 200,
+          "height": 245,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "GRN",
+          "tableName": "regulation",
+          "x": 296,
+          "y": 343,
+          "width": 200,
+          "height": 200,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "GRN",
+          "tableName": "tfbs_prediction",
+          "x": 625,
+          "y": 173,
+          "width": 200,
+          "height": 367,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "GRN",
+          "tableName": "network_node",
+          "x": 481,
+          "y": 554,
+          "width": 200,
+          "height": 318,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        }
+      ],
+      "layers": [],
+      "relations": [
+        {
+          "name": "locus_tag",
+          "sourceTableName": "ortho",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 67,
+              "y": 447
+            },
+            {
+              "x": 164,
+              "y": 261
+            }
+          ],
+          "label": {
+            "x": 36,
+            "y": 416,
+            "width": 68,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "organism",
+          "sourceTableName": "ortho",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 77,
+              "y": 447
+            },
+            {
+              "x": 174,
+              "y": 261
+            }
+          ],
+          "label": {
+            "x": 46,
+            "y": 416,
+            "width": 66,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "organism",
+          "sourceTableName": "pwm",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 379,
+              "y": 107
+            },
+            {
+              "x": 279,
+              "y": 146
+            }
+          ],
+          "label": {
+            "x": 323,
+            "y": 68,
+            "width": 66,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "locus_tag",
+          "sourceTableName": "pwm",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 379,
+              "y": 117
+            },
+            {
+              "x": 279,
+              "y": 156
+            }
+          ],
+          "label": {
+            "x": 321,
+            "y": 78,
+            "width": 68,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "ortho_organism",
+          "sourceTableName": "regulation",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 281,
+              "y": 483
+            },
+            {
+              "x": 240,
+              "y": 567
+            }
+          ],
+          "label": {
+            "x": 186,
+            "y": 444,
+            "width": 105,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "ortho_locus_tag",
+          "sourceTableName": "regulation",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 281,
+              "y": 493
+            },
+            {
+              "x": 240,
+              "y": 577
+            }
+          ],
+          "label": {
+            "x": 184,
+            "y": 454,
+            "width": 107,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "ortho_org",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 313
+            },
+            {
+              "x": 416,
+              "y": 328
+            }
+          ],
+          "label": {
+            "x": 552,
+            "y": 274,
+            "width": 68,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "ortho_tf",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 323
+            },
+            {
+              "x": 426,
+              "y": 328
+            }
+          ],
+          "label": {
+            "x": 565,
+            "y": 284,
+            "width": 55,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "ortho_tg",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 333
+            },
+            {
+              "x": 436,
+              "y": 328
+            }
+          ],
+          "label": {
+            "x": 561,
+            "y": 294,
+            "width": 59,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "motif_id",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 343
+            },
+            {
+              "x": 514,
+              "y": 267
+            }
+          ],
+          "label": {
+            "x": 563,
+            "y": 304,
+            "width": 57,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "organism",
+          "sourceTableName": "network_node",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 466,
+              "y": 654
+            },
+            {
+              "x": 396,
+              "y": 558
+            }
+          ],
+          "label": {
+            "x": 410,
+            "y": 615,
+            "width": 66,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "tf_locus_tag",
+          "sourceTableName": "network_node",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 466,
+              "y": 664
+            },
+            {
+              "x": 406,
+              "y": 558
+            }
+          ],
+          "label": {
+            "x": 394,
+            "y": 625,
+            "width": 82,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "tg_locus_tag",
+          "sourceTableName": "network_node",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 466,
+              "y": 674
+            },
+            {
+              "x": 416,
+              "y": 558
+            }
+          ],
+          "label": {
+            "x": 390,
+            "y": 635,
+            "width": 86,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "src_organism",
+          "sourceTableName": "regulation",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 281,
+              "y": 503
+            },
+            {
+              "x": 87,
+              "y": 447
+            }
+          ],
+          "label": {
+            "x": 199,
+            "y": 464,
+            "width": 92,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "src_locus_tag",
+          "sourceTableName": "regulation",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 281,
+              "y": 513
+            },
+            {
+              "x": 97,
+              "y": 447
+            }
+          ],
+          "label": {
+            "x": 198,
+            "y": 474,
+            "width": 93,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "src_org_reg",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 353
+            },
+            {
+              "x": 511,
+              "y": 443
+            }
+          ],
+          "label": {
+            "x": 538,
+            "y": 314,
+            "width": 82,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "src_org_pwm",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 363
+            },
+            {
+              "x": 524,
+              "y": 267
+            }
+          ],
+          "label": {
+            "x": 529,
+            "y": 324,
+            "width": 91,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "src_tf_locus_tag_reg",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 373
+            },
+            {
+              "x": 511,
+              "y": 453
+            }
+          ],
+          "label": {
+            "x": 485,
+            "y": 334,
+            "width": 135,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "src_tf_locus_tag_pwm",
+          "sourceTableName": "tfbs_prediction",
+          "sourceSchemaName": "GRN",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 610,
+              "y": 383
+            },
+            {
+              "x": 534,
+              "y": 267
+            }
+          ],
+          "label": {
+            "x": 475,
+            "y": 344,
+            "width": 145,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 51,
+              "g": 51,
+              "b": 51,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        }
+      ],
+      "viewRelations": []
+    }
+  ]
+}
