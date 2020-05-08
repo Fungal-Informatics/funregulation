@@ -21,7 +21,6 @@ setup (
        #summary = 'Just another Python package for the cheese shop',
        url='https://github.com/alexandrelenz/funregulation.git',
         license='BSD 2-clause',
-        long_description=read('README.md'),
 
         # could also include long_description, download_url, classifiers, etc.
         include_package_data=True,
