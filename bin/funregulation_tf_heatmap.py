@@ -83,7 +83,7 @@ def plot_heatmap():
     xticks = input_tf_domains.columns
 
     # Blues_r = dark / Blues = light
-    sns.heatmap(input_tf_domains, xticklabels=xticks, yticklabels=yticks, fmt="d", annot=True, cmap = 'Blues_r')
+    sns.heatmap(input_tf_domains, xticklabels=xticks, yticklabels=yticks, fmt="d", annot=True, cmap = 'Blues')
 
     # This sets the xticks "upright" with 0, as opposed to sideways with 90.
     plt.xticks(rotation=90)

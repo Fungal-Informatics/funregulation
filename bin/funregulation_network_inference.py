@@ -1218,13 +1218,13 @@ def compile_tfbs_prediction(src_organism):
                         tfbs = TFBSPrediction(pwm.motif_id, strand, start, end, sequence, weight, pval, ln_pval, sig)
                         interaction_record.add_tfbs_prediction(tfbs)
                         sqlite_insert_tfbs_prediction(interaction_record, tfbs)
-                    #Create or Update Network Node
-                    node = sqlite_get_network_node_by_tf_tg(tf_locus_tag, tg_locus_tag)
-                    if node is None:
-                        sqlite_insert_network_node(interaction_record)
-                    else:
-                        sqlite_update_network_node(node,interaction_record)
                 in_file.close()
+            #Create or Update Network Node
+            node = sqlite_get_network_node_by_tf_tg(tf_locus_tag, tg_locus_tag)
+            if node is None:
+                sqlite_insert_network_node(interaction_record)
+            else:
+                sqlite_update_network_node(node,interaction_record)
     lib.log.info("TFBS Predictions compilation completed")
 
 
@@ -1285,29 +1285,29 @@ def write_network_output_file(organism):
 """ 
 if __name__ == '__main__':
     #Delete current database and create an empty new database
-    #create_sqlite_database(sqlite_db_file,sqlite_db_script_file)
+    create_sqlite_database(sqlite_db_file,sqlite_db_script_file)
     
     #Create a database connection
     sqliteConnection = create_sqlite_connection(sqlite_db_file)
     
     #Execute Load Input Files
-    #load_input_files()
+    load_input_files()
     
     #Execute Update of TFs by orthology
-    #update_tfs()
+    update_tfs()
     
     #Execute Poxalicum TFBS Prediction
-    #perform_tfbs_predictions("Poxalicum")
+    perform_tfbs_predictions("Poxalicum")
     #Execute Pucsensis TFBS Prediction
-    #perform_tfbs_predictions("Pucsensis")
+    perform_tfbs_predictions("Pucsensis")
     
     #Compile Poxalicum TFBS Prediction
-    #compile_tfbs_prediction("Poxalicum")
+    compile_tfbs_prediction("Poxalicum")
     #Execute Pucsensis TFBS Prediction
-    #compile_tfbs_prediction("Pucsensis")
+    compile_tfbs_prediction("Pucsensis")
     
     #Execute Create Interactions src Pucsensis x ortho Poxalicum
-    #sqlite_update_network_node_puc_by_pox_ortho()
+    sqlite_update_network_node_puc_by_pox_ortho()
     
     #write pucsensis output files
     write_tfbs_predictions_output_file("Poxalicum")
