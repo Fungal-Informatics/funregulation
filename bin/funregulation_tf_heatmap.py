@@ -48,7 +48,7 @@ input_tf_file = '/Users/arlenz/NetBeansProjects/funregulation/GRN/input/tfs/All_
 def plot_heatmap():
     input_tf_domains = pd.read_csv(input_tf_file)
 
-    input_tf_domains = input_tf_domains.pivot('Species','Domains', 'Quantity')
+    input_tf_domains = input_tf_domains.pivot('Species','Families', 'Quantity')
 
     ####  Free input parameters ####
     cols = [5, 39]
@@ -83,7 +83,7 @@ def plot_heatmap():
     xticks = input_tf_domains.columns
 
     # Blues_r = dark / Blues = light
-    sns.heatmap(input_tf_domains, xticklabels=xticks, yticklabels=yticks, fmt="d", annot=True, cmap = 'Blues')
+    sns.heatmap(input_tf_domains, xticklabels=xticks, yticklabels=yticks, fmt="d", annot=True, cmap = 'Blues_r')
 
     # This sets the xticks "upright" with 0, as opposed to sideways with 90.
     plt.xticks(rotation=90)
