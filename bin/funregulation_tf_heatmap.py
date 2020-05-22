@@ -47,8 +47,11 @@ input_tf_file = '/Users/arlenz/NetBeansProjects/funregulation/GRN/input/tfs/All_
 """ 
 def plot_heatmap():
     input_tf_domains = pd.read_csv(input_tf_file)
-
     input_tf_domains = input_tf_domains.pivot('Species','Families', 'Quantity')
+    
+    ####  Custom Sorting  ####
+    input_tf_domains.index = pd.CategoricalIndex(input_tf_domains.index, categories= ['P_ucsensis_2HH', 'P_oxalicum_114-2', 'A_nidulans_FGSC_A4', 'N_crassa_OR74A', 'S_cerevisiae_S288C'])
+    input_tf_domains.sort_index(level=0, inplace=True)
 
     ####  Free input parameters ####
     cols = [5, 39]
@@ -83,7 +86,7 @@ def plot_heatmap():
     xticks = input_tf_domains.columns
 
     # Blues_r = dark / Blues = light
-    sns.heatmap(input_tf_domains, xticklabels=xticks, yticklabels=yticks, fmt="d", annot=True, cmap = 'Blues_r')
+    sns.heatmap(input_tf_domains, xticklabels=xticks, yticklabels=yticks, fmt="d", annot=True, cmap = 'Greens_r')
 
     # This sets the xticks "upright" with 0, as opposed to sideways with 90.
     plt.xticks(rotation=90)
