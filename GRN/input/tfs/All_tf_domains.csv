@@ -1,9 +1,9 @@
 Species,Families,Quantity
-P_ucsensis_2HH,Zinc_cluster,230
+P_ucsensis_2HH,Zn2Cys6,230
 P_ucsensis_2HH,C2H2_ZF,73
 P_ucsensis_2HH,RRM,68
 P_ucsensis_2HH,bZIP,20
-P_ucsensis_2HH,Myb,17
+P_ucsensis_2HH,Myb,19
 P_ucsensis_2HH,CCCH_ZF,16
 P_ucsensis_2HH,bHLH,10
 P_ucsensis_2HH,Sox,6
@@ -22,8 +22,6 @@ P_ucsensis_2HH,NFX,2
 P_ucsensis_2HH,Pipsqueak,1
 P_ucsensis_2HH,BED_ZF,1
 P_ucsensis_2HH,HAP2,1
-P_ucsensis_2HH,HAP3,1
-P_ucsensis_2HH,HAP5,1
 P_ucsensis_2HH,STE,1
 P_ucsensis_2HH,TBP,1
 P_ucsensis_2HH,TEA,1
@@ -38,7 +36,7 @@ P_ucsensis_2HH,AFT,0
 P_ucsensis_2HH,VHR1,0
 P_ucsensis_2HH,ABF1,0
 P_ucsensis_2HH,Rap1,0
-P_oxalicum_114-2,Zinc_cluster,206
+P_oxalicum_114-2,Zn2Cys6,206
 P_oxalicum_114-2,C2H2_ZF,80
 P_oxalicum_114-2,RRM,68
 P_oxalicum_114-2,bZIP,21
@@ -61,8 +59,6 @@ P_oxalicum_114-2,NFX,2
 P_oxalicum_114-2,Pipsqueak,2
 P_oxalicum_114-2,BED_ZF,1
 P_oxalicum_114-2,HAP2,1
-P_oxalicum_114-2,HAP3,1
-P_oxalicum_114-2,HAP5,1
 P_oxalicum_114-2,STE,1
 P_oxalicum_114-2,TBP,1
 P_oxalicum_114-2,TEA,1
@@ -77,7 +73,7 @@ P_oxalicum_114-2,AFT,0
 P_oxalicum_114-2,VHR1,0
 P_oxalicum_114-2,ABF1,0
 P_oxalicum_114-2,Rap1,0
-A_nidulans_FGSC_A4,Zinc_cluster,323
+A_nidulans_FGSC_A4,Zn2Cys6,323
 A_nidulans_FGSC_A4,C2H2_ZF,77
 A_nidulans_FGSC_A4,RRM,67
 A_nidulans_FGSC_A4,bZIP,18
@@ -100,8 +96,6 @@ A_nidulans_FGSC_A4,NFX,1
 A_nidulans_FGSC_A4,Pipsqueak,3
 A_nidulans_FGSC_A4,BED_ZF,1
 A_nidulans_FGSC_A4,HAP2,1
-A_nidulans_FGSC_A4,HAP3,1
-A_nidulans_FGSC_A4,HAP5,1
 A_nidulans_FGSC_A4,STE,1
 A_nidulans_FGSC_A4,TBP,1
 A_nidulans_FGSC_A4,TEA,1
@@ -116,7 +110,7 @@ A_nidulans_FGSC_A4,AFT,0
 A_nidulans_FGSC_A4,VHR1,0
 A_nidulans_FGSC_A4,ABF1,0
 A_nidulans_FGSC_A4,Rap1,0
-N_crassa_OR74A,Zinc_cluster,124
+N_crassa_OR74A,Zn2Cys6,124
 N_crassa_OR74A,C2H2_ZF,91
 N_crassa_OR74A,RRM,69
 N_crassa_OR74A,bZIP,20
@@ -139,8 +133,6 @@ N_crassa_OR74A,NFX,1
 N_crassa_OR74A,Pipsqueak,2
 N_crassa_OR74A,BED_ZF,1
 N_crassa_OR74A,HAP2,1
-N_crassa_OR74A,HAP3,1
-N_crassa_OR74A,HAP5,1
 N_crassa_OR74A,STE,1
 N_crassa_OR74A,TBP,1
 N_crassa_OR74A,TEA,1
@@ -155,7 +147,7 @@ N_crassa_OR74A,AFT,0
 N_crassa_OR74A,VHR1,0
 N_crassa_OR74A,ABF1,0
 N_crassa_OR74A,Rap1,0
-S_cerevisiae_S288C,Zinc_cluster,55
+S_cerevisiae_S288C,Zn2Cys6,55
 S_cerevisiae_S288C,C2H2_ZF,50
 S_cerevisiae_S288C,RRM,54
 S_cerevisiae_S288C,bZIP,13
@@ -178,8 +170,6 @@ S_cerevisiae_S288C,NFX,1
 S_cerevisiae_S288C,Pipsqueak,0
 S_cerevisiae_S288C,BED_ZF,2
 S_cerevisiae_S288C,HAP2,1
-S_cerevisiae_S288C,HAP3,1
-S_cerevisiae_S288C,HAP5,1
 S_cerevisiae_S288C,STE,1
 S_cerevisiae_S288C,TBP,1
 S_cerevisiae_S288C,TEA,1
