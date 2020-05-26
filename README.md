@@ -4,10 +4,18 @@ Penicillium oxalicum 114-2 inferred by a computational biology approach
 We propose the inference of global GRNs for Penicillium ucsensis 2HH and Penicillium oxalicum 114-2, based on TF-TG orthology relationships of related species combined with TFBSs prediction. First, global GRNs of related species (A. nidulans, N. crassa and S. cerevisiae) afford the mapping of orthologous interactions. Further, the TFBSs prediction provides accuracy to TF-TG relationships.
 
 Word cloud of the over-represented GO terms of whole Penicillium ucsensis GRN
-<img src="https://github.com/alexandrelenz/funregulation/master/word-cloud.png">
+<img
+src=“https://github.com/alexandrelenz/funregulation/master/word-cloud.png”
+raw=true
+style=“margin-right: 10px;”
+/>
 
 Schematic workflow of the network inference procedure steps
-<img src="https://github.com/alexandrelenz/funregulation/master/funregulation-workflow.png">
+<img
+src=“https://github.com/alexandrelenz/funregulation/master/funregulation-workflow.png”
+raw=true
+style=“margin-right: 10px;”
+/>
 
 Python packages required:
 - pip3 install Biopython
