@@ -1,9 +1,9 @@
-FunRegulation: Gene regulatory networks (GRN) of Penicillium ucsensis 2HH and 
+FunRegulation: Gene regulatory networks (GRN) of Penicillium sp. nov. 2HH and 
 Penicillium oxalicum 114-2 inferred by a computational biology approach
 
-We propose the inference of global GRNs for Penicillium ucsensis 2HH and Penicillium oxalicum 114-2, based on TF-TG orthology relationships of related species combined with TFBSs prediction. First, global GRNs of related species (A. nidulans, N. crassa and S. cerevisiae) afford the mapping of orthologous interactions. Further, the TFBSs prediction provides accuracy to TF-TG relationships.
+We propose the inference of global GRNs for Penicillium sp. nov. 2HH and Penicillium oxalicum 114-2, based on TF-TG orthology relationships of related species combined with TFBSs prediction. First, global GRNs of related species (A. nidulans, N. crassa and S. cerevisiae) afford the mapping of orthologous interactions. Further, the TFBSs prediction provides accuracy to TF-TG relationships.
 
-Over-represented GO terms of Penicillium ucsensis Global Regulatory Network
+Over-represented GO terms of Penicillium sp. nov. Global Regulatory Network
 <img src="https://github.com/alexandrelenz/funregulation/blob/master/word-cloud.png">
 
 Schematic workflow of the network inference procedure steps
@@ -22,7 +22,7 @@ Python packages required:
 
 a) Genomic data: Four fungal genomes and proteomes were used:
 
-   - Penicillium ucsensis 2HH (this study);
+   - Penicillium sp. nov. 2HH (this study);
    - Penicillium oxalicum 114-2 (GCA000346795.1 pdev1.0 from GenBank);
    - Aspergillus nidulansFGSC A4 (v. s10-m04-r06 from AspGD / GCF000149205.2 ASM14920v2 from GenBank);
    - Neurospora crassaOR74A (v. 12 from Broad88Institute / GCF000182925.2 NC12 from GenBank);
@@ -82,7 +82,7 @@ f) PWMs in 'cis-bp' format from P.oxalicum, A. nidulans, N. crassa and S. cerevi
    PWM files:
    - in_folder/pwms/
   
-g) Regulatory sequences of P. ucsensis 2HH and P. oxalicum 114-2 were obtained by 
+g) Regulatory sequences of P. sp. nov. 2HH and P. oxalicum 114-2 were obtained by 
    funregulation_promoter_extract.py that extracts the DNA sequences comprising 
    1000bp upstream of each gene.
    
@@ -114,7 +114,7 @@ g) Regulatory sequences of P. ucsensis 2HH and P. oxalicum 114-2 were obtained b
    -  out_file_poxalicum_tfbs
    -  out_folder/tfbs_predictions/Poxalicum/
 
-Regulatory sequences (promoter regions) of P. ucsensis 2HH and P. oxalicum 114-2 
+Regulatory sequences (promoter regions) of P. sp. nov. 2HH and P. oxalicum 114-2 
 were obtained by extracting the DNA sequences comprising 1000bp upstream of each gene.
 This script uses annotation in gff3 format and whole genome sequences.
 
@@ -123,7 +123,7 @@ by funregulation_converter_to_gff3.py
 
   INPUT FILES:
 
-   Penicillium ucsensis 2HH (this study) genomic data:
+   Penicillium sp. nov. 2HH (this study) genomic data:
    - in_file_genome (fasta format)
    - in_file_annotation (gff3 format)
    Penicillium oxalicum 114-2 (GCA000346795.1 pdev1.0 from GenBank) genomic data:
