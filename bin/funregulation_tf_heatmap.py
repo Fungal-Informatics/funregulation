@@ -50,7 +50,7 @@ def plot_heatmap():
     input_tf_domains = input_tf_domains.pivot('Species','Families', 'Quantity')
     
     ####  Custom Sorting  ####
-    input_tf_domains.index = pd.CategoricalIndex(input_tf_domains.index, categories= ['P_sp._nov._2HH', 'P_oxalicum_114-2', 'A_nidulans_FGSC_A4', 'N_crassa_OR74A', 'S_cerevisiae_S288C'])
+    input_tf_domains.index = pd.CategoricalIndex(input_tf_domains.index, categories= ['P_echinulatum_2HH', 'P_oxalicum_114-2', 'A_nidulans_FGSC_A4', 'N_crassa_OR74A', 'S_cerevisiae_S288C'])
     input_tf_domains.sort_index(level=0, inplace=True)
 
     ####  Free input parameters ####
