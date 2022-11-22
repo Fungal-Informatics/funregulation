@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>UPLOAD DE ARQUIVO TESTE</title>
+</head>
+<body>
+    <form action="{% url 'list' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            {{ form.file }}
+        </p>
+        <p><input type="submit" value="upload"></p>
+    </form>
+</body>
+</html>

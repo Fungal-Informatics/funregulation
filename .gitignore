@@ -102,3 +102,5 @@ ENV/
 
 # mypy
 .mypy_cache/
+FunRegulationWeb/funRegulationBackCode/funRegulation/db.sqlite3
+FunRegulationWeb/funRegulationBackCode/.vscode/settings.json
